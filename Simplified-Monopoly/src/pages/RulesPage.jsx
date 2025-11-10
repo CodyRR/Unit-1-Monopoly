@@ -1,8 +1,16 @@
+import { ruleList } from "../data/ruleList.js";
 
 const RulesPage = () => {
 
     return (
-        <p>THE RULES PAGE</p>
+        <div>
+            <p>THE RULES PAGE</p>
+            <ul>
+                {ruleList.map((rule, index) => (
+                    <li key={"rule-" + index}>{rule}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
