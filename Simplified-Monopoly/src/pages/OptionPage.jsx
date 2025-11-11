@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import PlayerColorOption from "../common/PlayerColorOption";
 import { defaultPlayerData } from "../data/defaultPlayerData";
 
 const OptionsPage = () => {
 
-    const [playerData, setPlayerData] = useState({...defaultPlayerData});
+    const [playerData, setPlayerData] = useState(structuredClone({...defaultPlayerData}));
 
     const handleDataChange = (playerNum, index, event) => {
         let newData = {...playerData};
@@ -18,6 +19,12 @@ const OptionsPage = () => {
         console.log(playerData);
     }
 
+    const restoreDefaults = (event) => {
+
+        event.preventDefault();
+        console.log({...defaultPlayerData});
+        setPlayerData(structuredClone({...defaultPlayerData}));
+    }
 
     return (
         <div>
@@ -26,46 +33,50 @@ const OptionsPage = () => {
                 <div>
                     <label>Player 1</label>
                     <label>Name:
-                        <input type="text" name="player1Name" defaultValue="Player 1" onChange={(event) => handleDataChange(0,1, event)} />
+                        <input type="text" name="player1Name" value={playerData[0][1]} onChange={(event) => handleDataChange(0,1, event)} />
                     </label>
-                    <PlayerColorOption id="Player1Color" defaultElement="red" handleChange={(event) => handleDataChange(0,2, event)} />
+                    <PlayerColorOption id="Player1Color" defaultElement={playerData[0][2]} handleChange={(event) => handleDataChange(0,2, event)} />
                     <label>Amount: $
-                        <input type="number" name="player1Amount" step="1" defaultValue="300" onChange={(event) => handleDataChange(0,3, event)} />
+                        <input type="number" name="player1Amount" step="1" value={playerData[0][3]} onChange={(event) => handleDataChange(0,3, event)} />
                     </label>
                 </div>
                 <div>
                     <label>Player 2</label>
                     <label>Name:
-                        <input type="text" name="player2Name" defaultValue="Player 2" onChange={(event) => handleDataChange(1,1, event)} />
+                        <input type="text" name="player2Name" value={playerData[1][1]}onChange={(event) => handleDataChange(1,1, event)} />
                     </label>
-                    <PlayerColorOption id="Player2Color" defaultElement="blue" handleChange={(event) => handleDataChange(1,2, event)} />
+                    <PlayerColorOption id="Player2Color" defaultElement={playerData[1][2]} handleChange={(event) => handleDataChange(1,2, event)} />
                     <label>Amount: $
-                        <input type="number" name="player2Amount" step="1" defaultValue="300" onChange={(event) => handleDataChange(1,3, event)} />
+                        <input type="number" name="player2Amount" step="1" value={playerData[1][3]} onChange={(event) => handleDataChange(1,3, event)} />
                     </label>
                 </div>
                 <div>
                     <label>Player 3</label>
                     <label>Name:
-                        <input type="text" name="player3Name" defaultValue="Player 3" onChange={(event) => handleDataChange(2,1, event)} />
+                        <input type="text" name="player3Name" value={playerData[2][1]} onChange={(event) => handleDataChange(2,1, event)} />
                     </label>
-                    <PlayerColorOption id="Player3Color" defaultElement="green" handleChange={(event) => handleDataChange(2,2, event)} />
+                    <PlayerColorOption id="Player3Color" defaultElement={playerData[2][2]} handleChange={(event) => handleDataChange(2,2, event)} />
                     <label>Amount: $
-                        <input type="number" name="player4Amount" step="1" defaultValue="300" onChange={(event) => handleDataChange(2,3, event)} />
+                        <input type="number" name="player4Amount" step="1" value={playerData[2][3]} onChange={(event) => handleDataChange(2,3, event)} />
                     </label>
                 </div>
                 <div>
                     <label>Player 4</label>
                     <label>Name:
-                        <input type="text" name="player4Name" defaultValue="Player 4" onChange={(event) => handleDataChange(3,1, event)} />
+                        <input type="text" name="player4Name" value={playerData[3][1]} onChange={(event) => handleDataChange(3,1, event)} />
                     </label>
-                    <PlayerColorOption id="Player4Color" defaultElement="yellow" handleChange={(event) => handleDataChange(3,2, event)} />
+                    <PlayerColorOption id="Player4Color" defaultElement={playerData[3][2]} handleChange={(event) => handleDataChange(3,2, event)} />
                     <label>Amount: $
-                        <input type="number" name="player4Amount" step="1" defaultValue="300" onChange={(event) => handleDataChange(3,3, event)} />
+                        <input type="number" name="player4Amount" step="1" value={playerData[3][3]} onChange={(event) => handleDataChange(3,3, event)} />
                     </label>
                 </div>
 
 
-                <button onClick={testData}>Submit</button>
+                <button onClick={testData}>Save</button>
+                <Link className='link' to="/">
+                    <button>Cancel</button>
+                </Link>
+                <button onClick={restoreDefaults}>Restore Defaults</button>
             </form>
         </div>
     )
