@@ -1,6 +1,6 @@
 
 export const spaceData = [
-    ["GO", "GO", 0, 0, 0, true, 1]
+    ["GO", "GO", 0, 0, 0, true, 1],
     ["Space 1", "SP#1", 1, 15, 5, false, 2],
     ["Space 2", "SP#2", 2, 20, 10, false, 3],
     ["Space 3", "SP#3", 3, 25, 10, false, 4],
