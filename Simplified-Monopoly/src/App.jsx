@@ -8,6 +8,7 @@ import Header from './layout/Header'
 import Footer from './layout/Footer'
 import { Route, Routes, Navigate } from 'react-router'
 import './App.css'
+import ResultsPage from './pages/ResultsPage'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/options' element={<OptionsPage />} />
         <Route path='/game' element={<GamePage />} />
         <Route path='/about' element={<AboutPage />} />
+        <Route path='/results' element={<ResultsPage />} />
         <Route path='*' element={<Navigate to='/' />} />'
       </Routes>
       <Footer />
