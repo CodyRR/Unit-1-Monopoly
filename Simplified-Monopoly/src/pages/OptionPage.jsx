@@ -71,6 +71,26 @@ const OptionsPage = () => {
                     </label>
                 </div>
 
+                <div>
+                    <label>Turn Amount:
+                        <input type="text" name="turnAmount" defaultValue={10}/>
+                    </label>
+                </div>
+                <div>
+                    <label>Dice Number:
+                        <input type="radio" id="diceNum1" name="1die" value={1}/>
+                        <label for="diceNum1">1 Die</label>
+                        <input type="radio" id="diceNum2" name="2dice" value={2}/>
+                        <label for="diceNum2">2 Die</label>
+                        <input type="radio" id="diceNum3" name="smallDie" value={3}/>
+                        <label for="diceNum3">Low Die</label>
+                    </label>
+                </div>
+                <div>
+                   <label>Amount from Go: $
+                        <input type="number" name="passGoAmount" step="1" defaultValue={200} />
+                    </label> 
+                </div>
 
                 <button onClick={testData}>Save</button>
                 <Link className='link' to="/">
