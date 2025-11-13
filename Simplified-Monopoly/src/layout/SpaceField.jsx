@@ -1,14 +1,13 @@
 import SpaceCard from "../common/SpaceCard"
 
-const SpaceField = ({theSpaces}) => {
+const SpaceField = ({theSpaces, widthSize}) => {
 
-    console.log("In SpaceField " + theSpaces);
+    const drawCard = (space, index, theSpaces, widthSize) => {
 
-    const drawCard = (space, index, theSpaces) => {
+
 
         let lastItem = false;
-        console.log(index + " " + ((index +1) % 5));
-        if ( (theSpaces.length != (index+1)) && ((index +1) % 5 ===0)){
+        if ( (theSpaces.length != (index+1)) && ((index +1) % widthSize ===0)){
             lastItem = true;
         }
 
@@ -25,7 +24,7 @@ const SpaceField = ({theSpaces}) => {
         <div>
             <div className="grid">
                 {theSpaces.map((space, index, theSpaces) => (
-                    drawCard(space,index, theSpaces)
+                    drawCard(space,index, theSpaces, widthSize)
                 ))}
             </div>
         </div>
