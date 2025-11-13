@@ -8,6 +8,7 @@ const ResultsPage = () => {
             <h5>Player 2 : $350</h5>
             <h5>Player 3 : $350</h5>
             <h5>Player 4 : $350</h5>
+            <button>Home</button>
         </div>
     )
 }
