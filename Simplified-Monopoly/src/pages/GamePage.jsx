@@ -50,13 +50,13 @@ const GamePage = () => {
     }
 
     return (
-        <div>
+        <main>
             <p>THE GAMES PAGE</p>
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} />
             <StatusBoard />
             <PlayerStatsBoard />
             <button onClick={testForChange}>Test</button>
-        </div>
+        </main>
     )
 }
 
