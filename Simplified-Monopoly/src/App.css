@@ -1,0 +1,22 @@
+
+body {
+    margin: 0;
+    background-color: rgb(177, 221, 239);
+    min-height: 100vh;
+}
+
+header,
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+#body-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

@@ -14,7 +14,7 @@ import ResultsPage from './pages/ResultsPage'
 function App() {
 
   return (
-    <>
+    <div id='body-container'>
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -26,7 +26,7 @@ function App() {
         <Route path='*' element={<Navigate to='/' />} />'
       </Routes>
       <Footer />
-    </>
+    </div>
   )
 }
 
