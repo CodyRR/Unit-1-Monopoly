@@ -46,3 +46,34 @@
     margin-right: auto;
     font-size: 30px;
 }
+
+td {
+    padding-right: 10px;
+    padding-bottom: 25px;
+}
+
+.home-button {
+    width: 200px;
+    height: 40px;
+    font-size: 30px;
+}
+
+.status-board {
+    text-align: center;
+    background-color: white;
+    display: grid; 
+    border: 5px solid; 
+    height: 100px; 
+    grid-Template-Columns: 1fr 1fr 1fr;
+    margin: 10px;
+}
+
+.player-stats-board {
+    text-align: center;
+    background-color: white;
+    display: grid;
+    border: 5px solid; 
+    height: 100px; 
+    grid-Template-Columns: 1fr 1fr;
+    margin: 10px;
+}

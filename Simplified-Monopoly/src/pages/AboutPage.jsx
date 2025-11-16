@@ -4,12 +4,14 @@ const AboutPage = () => {
 
     return (
         <main>
-            <p>THE ABOUT PAGE</p>
-            <ul>
-                {aboutList.map((aboutLine, index) => (
-                    <li key={"line-" + index}>{aboutLine}</li>
-                ))}
-            </ul>
+            <div id="about-container">
+                <p>About The Project</p>
+                <ul>
+                    {aboutList.map((aboutLine, index) => (
+                        <li className="about-list" key={"line-" + index}>{aboutLine}</li>
+                    ))}
+                </ul>
+            </div>
         </main>
     )
 }

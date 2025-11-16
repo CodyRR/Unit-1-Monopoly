@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import Button from "../common/Button"
 
 const HomePage = () => {
 
@@ -9,7 +10,7 @@ const HomePage = () => {
                 <tr>
                     <td>
                         <Link className='link' to="/game">
-                            <button>Play</button>
+                            <Button id="play-button" display="Play" classes="home-button"/>
                         </Link>
                     </td>
                     <td>
@@ -19,7 +20,7 @@ const HomePage = () => {
                 <tr>
                     <td>
                         <Link className='link' to="/rules">
-                            <button>Rules</button>
+                            <Button id="rule-button" display="Rules" classes="home-button" />
                         </Link>
                     </td>
                     <td>
@@ -29,7 +30,7 @@ const HomePage = () => {
                 <tr>
                     <td>
                         <Link className='link' to="/options">
-                            <button>Options</button>
+                            <Button id="options-button" display="Options" classes="home-button" />
                         </Link>
                     </td>
                     <td>
@@ -39,7 +40,7 @@ const HomePage = () => {
                 <tr>
                     <td>
                         <Link className='link' to="/about">
-                            <button>About</button>
+                            <Button id="about-button" display="About" classes="home-button" />
                         </Link>
                     </td>
                     <td>

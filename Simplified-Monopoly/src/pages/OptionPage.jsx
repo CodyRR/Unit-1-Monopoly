@@ -27,7 +27,7 @@ const OptionsPage = () => {
     }
 
     return (
-        <div>
+        <main>
             <p>THE OPTIONS PAGE</p>
             <form >
                 <div>
@@ -98,7 +98,7 @@ const OptionsPage = () => {
                 </Link>
                 <button onClick={restoreDefaults}>Restore Defaults</button>
             </form>
-        </div>
+        </main>
     )
 }
 
