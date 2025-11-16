@@ -5,6 +5,8 @@
     --green-height: 2px;
     grid-gap: var(--g);
     row-gap: var(--y);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .grid>* {
@@ -20,7 +22,7 @@
 .grid>*::after {
         content: '';
         border: solid;
-        width: var(--g);
+        width: 100%;
         height: 2px;
         background-image: linear-gradient(to right, red 0% 100%);
         position: absolute;
@@ -183,7 +185,10 @@
 }
 
 .card {
+    margin-left: 10px;
+    margin-right: 10px;
 	border: solid;
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }

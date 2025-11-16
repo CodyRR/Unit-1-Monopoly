@@ -20,3 +20,15 @@ main {
     flex-direction: column;
     min-height: 100vh;
 }
+
+#rules-container,
+#about-container {
+    font-size: 20px;
+    display: table;
+    margin: 0 auto;
+}
+
+.rule-list,
+.about-list {
+    padding: 5px 0;
+}
