@@ -4,9 +4,6 @@ const PlayerColorOption = ({id, defaultElement, handleChange}) => {
 
     return (
         <div>
-            <label>
-                Color:
-            </label>
             <select name={id} id={id} value={defaultElement} onChange={handleChange}>
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
