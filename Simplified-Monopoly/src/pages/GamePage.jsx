@@ -3,11 +3,18 @@ import { spaceData } from "../data/spaceData"
 import SpaceField from "../layout/SpaceField";
 import StatusBoard from "../layout/StatusBoard";
 import PlayerStatsBoard from "../layout/PlayerStatsBoard";
+import Space from "../classes/BoardSpace"
 
-const GamePage = () => {
+const GamePage = ({thePlayers, setThePlayers}) => {
 
-    
-    const [theSpaces, setTheSpaces] = useState(structuredClone(spaceData));
+    const spaceArrayData = [];
+    spaceData.forEach(function(space) {
+        spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
+    })
+
+    console.log(spaceArrayData);
+
+    const [theSpaces, setTheSpaces] = useState(spaceArrayData);
     const [widthSize, setWidthSize] = useState(null);
 
     
@@ -44,17 +51,20 @@ const GamePage = () => {
 
         event.preventDefault();
         let newData = [...theSpaces];
-        newData[1][3] = 30;
+        newData[2].spaceIsBought = true;
+        let newData2 = [...thePlayers];
+        newData2[2].currentSpace = 4;
         setTheSpaces(newData);
-        console.log(widthSize)
+        setThePlayers(newData2);
+        console.log(newData2)
     }
 
     return (
         <main>
             <p>THE GAMES PAGE</p>
-            <SpaceField theSpaces={theSpaces} widthSize={widthSize} />
+            <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
             <StatusBoard />
-            <PlayerStatsBoard />
+            <PlayerStatsBoard thePlayers={thePlayers} />
             <button onClick={testForChange}>Test</button>
         </main>
     )

@@ -77,3 +77,19 @@ td {
     grid-Template-Columns: 1fr 1fr;
     margin: 10px;
 }
+
+.player-stat {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.player-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}

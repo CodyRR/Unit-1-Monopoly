@@ -2,29 +2,29 @@ import { useState } from "react";
 import { Link } from "react-router";
 import Button from "../common/Button";
 import PlayerColorOption from "../common/PlayerColorOption";
-import { defaultPlayerData } from "../data/defaultPlayerData";
 
-const OptionsPage = () => {
+const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers}) => {
 
-    const [playerData, setPlayerData] = useState(structuredClone({...defaultPlayerData}));
+    const [playerData, setPlayerData] = useState(structuredClone(thePlayers));
 
     const handleDataChange = (playerNum, index, event) => {
-        let newData = {...playerData};
+        let newData = [...playerData];
         newData[playerNum][index] = event.target.value;
         setPlayerData(newData);
     }
 
-    const testData = (event) => {
+    const saveData = (event) => {
 
         event.preventDefault();
-        console.log(playerData);
+        setThePlayers(playerData)
     }
 
     const restoreDefaults = (event) => {
 
         event.preventDefault();
-        console.log({...defaultPlayerData});
-        setPlayerData(structuredClone({...defaultPlayerData}));
+        
+        setPlayerData(structuredClone([...defaultPlayers]));
+        setThePlayers(structuredClone([...defaultPlayers]));
     }
 
     return (
@@ -34,61 +34,61 @@ const OptionsPage = () => {
                 <label>Player 1</label>
 
                 <label>Name:</label>
-                <input type="text" name="player1Name" value={playerData[0][1]} onChange={(event) => handleDataChange(0,1, event)} />
+                <input type="text" name="player1Name" value={playerData[0].name} onChange={(event) => handleDataChange(0,"name", event)} />
                 
                 <div></div>
 
                 <label>Color:</label>
-                <PlayerColorOption id="Player1Color" defaultElement={playerData[0][2]} handleChange={(event) => handleDataChange(0,2, event)} />
+                <PlayerColorOption id="Player1Color" defaultElement={playerData[0].color} handleChange={(event) => handleDataChange(0,"color", event)} />
                 
                 <div></div>
 
                 <label>Amount: $</label>
-                <input type="number" name="player1Amount" step="1" value={playerData[0][3]} onChange={(event) => handleDataChange(0,3, event)} />
+                <input type="number" name="player1Amount" step="1" value={playerData[0].amount} onChange={(event) => handleDataChange(0,"amount", event)} />
                 
                 <label>Player 2</label>
 
                 <label>Name:</label>
-                <input type="text" name="player2Name" value={playerData[1][1]}onChange={(event) => handleDataChange(1,1, event)} />
+                <input type="text" name="player2Name" value={playerData[1].name}onChange={(event) => handleDataChange(1,"name", event)} />
                 
                 <div></div>
 
                 <label>Color:</label>
-                <PlayerColorOption id="Player2Color" defaultElement={playerData[1][2]} handleChange={(event) => handleDataChange(1,2, event)} />
+                <PlayerColorOption id="Player2Color" defaultElement={playerData[1].color} handleChange={(event) => handleDataChange(1,"color", event)} />
                 
                 <div></div>
                 <label>Amount: $</label>
-                <input type="number" name="player2Amount" step="1" value={playerData[1][3]} onChange={(event) => handleDataChange(1,3, event)} />
+                <input type="number" name="player2Amount" step="1" value={playerData[1].amount} onChange={(event) => handleDataChange(1,"amount", event)} />
                 
                 <label>Player 3</label>
 
                 <label>Name:</label>
-                <input type="text" name="player3Name" value={playerData[2][1]} onChange={(event) => handleDataChange(2,1, event)} />
+                <input type="text" name="player3Name" value={playerData[2].name} onChange={(event) => handleDataChange(2,"name", event)} />
                 
                 <div></div>
 
                 <label>Color:</label>
-                <PlayerColorOption id="Player3Color" defaultElement={playerData[2][2]} handleChange={(event) => handleDataChange(2,2, event)} />
+                <PlayerColorOption id="Player3Color" defaultElement={playerData[2].color} handleChange={(event) => handleDataChange(2,"color", event)} />
                 
                 <div></div>
 
                 <label>Amount: $</label>
-                <input type="number" name="player4Amount" step="1" value={playerData[2][3]} onChange={(event) => handleDataChange(2,3, event)} />
+                <input type="number" name="player4Amount" step="1" value={playerData[2].amount} onChange={(event) => handleDataChange(2,"amount", event)} />
                 
                 <label>Player 4</label>
 
                 <label>Name:</label>
-                <input type="text" name="player4Name" value={playerData[3][1]} onChange={(event) => handleDataChange(3,1, event)} />
+                <input type="text" name="player4Name" value={playerData[3].name} onChange={(event) => handleDataChange(3,"name", event)} />
                 
                 <div></div>
                 
                 <label>Color:</label>
-                <PlayerColorOption id="Player4Color" defaultElement={playerData[3][2]} handleChange={(event) => handleDataChange(3,2, event)} />
+                <PlayerColorOption id="Player4Color" defaultElement={playerData[3].color} handleChange={(event) => handleDataChange(3,"color", event)} />
                 
                 <div></div>
 
                 <label>Amount: $</label>
-                <input type="number" name="player4Amount" step="1" value={playerData[3][3]} onChange={(event) => handleDataChange(3,3, event)} />
+                <input type="number" name="player4Amount" step="1" value={playerData[3].amount} onChange={(event) => handleDataChange(3,"amount", event)} />
             
                 <div></div>
                 <label>Turn Amount:</label>
@@ -96,20 +96,27 @@ const OptionsPage = () => {
                 
                 <div></div>
                 <label>Dice Number:</label>
-                <div>
-                    <input type="radio" id="diceNum1" name="1die" value={1}/>
-                    <label for="diceNum1">1 Die</label>
-                    <input type="radio" id="diceNum2" name="2dice" value={2}/>
-                    <label for="diceNum2">2 Die</label>
-                    <input type="radio" id="diceNum3" name="smallDie" value={3}/>
-                    <label for="diceNum3">Low Die</label>
+                <div className="radio-container">
+                    <div>
+                        <input type="radio" id="diceNum1" name="dice" value={1} defaultChecked/>
+                        <label for="diceNum1">1 Die</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="diceNum2" name="dice" value={2}/>
+                        <label for="diceNum2">2 Die</label>
+                    </div>
+                    <div>
+                    
+                        <input type="radio" id="diceNum3" name="dice" value={3}/>
+                        <label for="diceNum3">Low Die</label>
+                    </div>
                 </div>
 
                 <div></div>
                 <label>Amount from Go: $</label> 
                 <input type="number" name="passGoAmount" step="1" defaultValue={200} />
                     
-                <Button id="save-button" handleClick={testData} display={"Save"}/>
+                <Button id="save-button" handleClick={saveData} display={"Save"}/>
                 <Button id="restore-button" handleClick={restoreDefaults} display={"Restore Defaults"}/>
             </form>
         </main>
