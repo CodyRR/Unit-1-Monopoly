@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HomePage from './pages/HomePage'
 import RulesPage from './pages/RulesPage'
 import OptionsPage from './pages/OptionPage'
@@ -9,9 +9,28 @@ import Footer from './layout/Footer'
 import { Route, Routes, Navigate } from 'react-router'
 import './App.css'
 import ResultsPage from './pages/ResultsPage'
+import { defaultPlayerData } from './data/defaultPlayerData'
+import Players from './classes/Player'
 
 
 function App() {
+
+  const playerArray = [];
+  const defaultArray = [];
+
+  defaultPlayerData.forEach(function(playerData) {
+
+    playerArray.push( new Players(playerData[0], playerData[1], playerData[2], playerData[3]))
+    defaultArray.push( new Players(playerData[0], playerData[1], playerData[2], playerData[3]))
+  });
+
+  const [thePlayers, setThePlayers] = useState(playerArray);
+  const [defaultPlayers, setDefaultPlayers] = useState(defaultArray)
+
+  useEffect(()=> {
+  
+    console.log(thePlayers);
+  }, [thePlayers]);
 
   return (
     <div id='body-container'>
@@ -19,7 +38,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/rules' element={<RulesPage />} />
-        <Route path='/options' element={<OptionsPage />} />
+        <Route path='/options' element={<OptionsPage thePlayers={thePlayers} setThePlayers={setThePlayers} defaultPlayers={defaultPlayers}/>} />
         <Route path='/game' element={<GamePage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/results' element={<ResultsPage />} />
