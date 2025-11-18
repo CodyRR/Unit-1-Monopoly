@@ -1,6 +1,6 @@
 import SpaceCard from "../common/SpaceCard"
 
-const SpaceField = ({theSpaces, widthSize}) => {
+const SpaceField = ({theSpaces, widthSize, thePlayers}) => {
 
     const drawCard = (space, index, theSpaces, widthSize) => {
 
@@ -13,7 +13,7 @@ const SpaceField = ({theSpaces, widthSize}) => {
 
         return (
             <>
-                <SpaceCard currentSpace={space}/>
+                <SpaceCard currentSpace={space} thePlayers={thePlayers}/>
                 {lastItem && <div className="row-border"></div>}
             </>
         )
