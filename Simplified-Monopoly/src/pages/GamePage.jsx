@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { spaceData } from "../data/spaceData"
+import { useNavigate } from "react-router";
 import SpaceField from "../layout/SpaceField";
 import StatusBoard from "../layout/StatusBoard";
 import PlayerStatsBoard from "../layout/PlayerStatsBoard";
@@ -7,6 +8,7 @@ import Space from "../classes/BoardSpace"
 
 const GamePage = ({thePlayers, setThePlayers}) => {
 
+    const navigate = useNavigate();
     const spaceArrayData = [];
     spaceData.forEach(function(space) {
         spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
@@ -15,7 +17,7 @@ const GamePage = ({thePlayers, setThePlayers}) => {
     const [theSpaces, setTheSpaces] = useState(spaceArrayData);
     const [widthSize, setWidthSize] = useState(null);
     const [turnNumber, setTurnNumber] = useState(1);
-    const [currentPlayerTurn, setCurrentPlayerTurn] = useState(thePlayers[0].playerId);
+    const [currentPlayerTurn, setCurrentPlayerTurn] = useState(1);
     const [gameState, setGameState] = useState("Start");
     const [dieRoll, setDieRoll] = useState(0)
 
@@ -76,7 +78,6 @@ const GamePage = ({thePlayers, setThePlayers}) => {
 
             let movement = rollTheDie();
             setDieRoll(movement);
-            console.log("Role die " + movement);
             
             let newData = [...thePlayers];
             let playerIndex = currentPlayerTurn -1;
@@ -95,6 +96,23 @@ const GamePage = ({thePlayers, setThePlayers}) => {
 
             setGameState("AfterRoll");
             
+        } else if(gameState === "AfterRoll") {
+
+            if(currentPlayerTurn === thePlayers.length) {
+                if(turnNumber < 10){
+                    navigate("/results");
+                    setGameState("End")
+                } else {
+                    let tempNum = turnNumber;
+                    setTurnNumber(tempNum + 1);
+                    setCurrentPlayerTurn(1);
+                    setGameState("RollDie");
+                }
+            } else {
+                let tempNum = currentPlayerTurn;
+                setCurrentPlayerTurn(tempNum+1);
+                setGameState("RollDie");
+            }
         }
     }
 

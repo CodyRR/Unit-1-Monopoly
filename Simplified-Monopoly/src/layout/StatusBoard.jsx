@@ -1,10 +1,17 @@
 import Button from "../common/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNumber, currentPlayerTurn, gameState, dieRoll, buttonChange}) => {
     
     const [ buySpaceOption, setBuySpaceOption] = useState(true);
+    const [ playerBought, setPlayerBought] = useState(false);
 
+    useEffect(()=> {
+  
+    setBuySpaceOption(true);
+    setPlayerBought(false)
+
+    }, [gameState]);
     const handleGameState = () => {
 
         if(gameState === "Start"){
@@ -12,6 +19,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         } else if(gameState === "RollDie"){
             return pressToRoll();
         } else if(gameState === "AfterRoll") {
+            
             return afterRoll();
         }
     }
@@ -40,7 +48,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
     }
 
     const afterRoll = () => {
-
+        
         return (
             <>
                 <div>
@@ -96,12 +104,48 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
                     </div>
                 </div>
             )
+        } else if (theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].owner === thePlayers[currentPlayerTurn -1].name) {
+
+            return (
+                <div>
+                    <div>
+                        You own this space.
+                    </div>
+                    <div>
+                        <Button id="continue-button" display="Continue" classes="continue-button" handleClick={buttonChange}/>
+                    </div>
+                </div>
+            )
+        } else {
+
+            let spaceOwner = thePlayers.findIndex(player => player["name"] === theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].owner)
+
+            return (
+                <div>
+                    <div>
+                        {thePlayers[currentPlayerTurn-1].name} must pay {thePlayers[spaceOwner].name} $ {theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].spaceValueBought}
+                    </div>
+                    <div>
+                        <Button id="rent-button" display="Pay" classes="pay-button" handleClick={()=>handlePayment(spaceOwner)}/>
+                    </div>
+                </div>
+            )
         }
+    }
+
+    const handlePayment = (spaceOwner) => {
+        setBuySpaceOption(false);
+        let newData = [...thePlayers];
+
+        newData[currentPlayerTurn -1].amount -= theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].spaceValueBought;
+        newData[spaceOwner].amount += theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].spaceValueBought;
+        setThePlayers(newData)
     }
 
     const buySpace = () => {
 
         setBuySpaceOption(false);
+        setPlayerBought(true);
         let newData = [...theSpaces];
         let newData2 = [...thePlayers];
         newData2[currentPlayerTurn -1].amount -= theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].spaceValueStart;
@@ -118,7 +162,15 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         // setBuySpaceOption(false);
         return (
             <div>
-                <Button id="continue-button" display="Continue" classes="continue-button" handleClick={buttonChange}/>
+                <div>
+                    {playerBought ? 
+                    (<div>
+                        {thePlayers[currentPlayerTurn -1].name} bought {theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].name}
+                    </div>) : (<div>Turn over</div>)}
+                </div>
+                <div>
+                    <Button id="continue-button" display="Continue" classes="continue-button" handleClick={buttonChange}/>
+                </div>
             </div>
         )
     }
