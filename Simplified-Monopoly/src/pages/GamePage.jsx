@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { spaceData } from "../data/spaceData"
+import { useNavigate } from "react-router";
 import SpaceField from "../layout/SpaceField";
 import StatusBoard from "../layout/StatusBoard";
 import PlayerStatsBoard from "../layout/PlayerStatsBoard";
 import Space from "../classes/BoardSpace"
 
-const GamePage = ({thePlayers, setThePlayers}) => {
+const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
 
+    const navigate = useNavigate();
     const spaceArrayData = [];
     spaceData.forEach(function(space) {
         spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
@@ -15,7 +17,7 @@ const GamePage = ({thePlayers, setThePlayers}) => {
     const [theSpaces, setTheSpaces] = useState(spaceArrayData);
     const [widthSize, setWidthSize] = useState(null);
     const [turnNumber, setTurnNumber] = useState(1);
-    const [currentPlayerTurn, setCurrentPlayerTurn] = useState(thePlayers[0].playerId);
+    const [currentPlayerTurn, setCurrentPlayerTurn] = useState(1);
     const [gameState, setGameState] = useState("Start");
     const [dieRoll, setDieRoll] = useState(0)
 
@@ -49,17 +51,6 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         return () => window.removeEventListener('resize', checkSize);
     }, []);
 
-    const testForChange = (event) => {
-
-        event.preventDefault();
-        let newData = [...theSpaces];
-        newData[2].spaceIsBought = true;
-        let newData2 = [...thePlayers];
-        newData2[2].currentSpace = 4;
-        setTheSpaces(newData);
-        setThePlayers(newData2);
-    }
-
     const rollTheDie = () => {
         return Math.floor(Math.random() *6) +1;
     }
@@ -76,16 +67,14 @@ const GamePage = ({thePlayers, setThePlayers}) => {
 
             let movement = rollTheDie();
             setDieRoll(movement);
-            console.log("Role die " + movement);
             
             let newData = [...thePlayers];
             let playerIndex = currentPlayerTurn -1;
 
             for( let i = 0; i < movement; i++){
-                console.log(i)
                 if(newData[playerIndex].currentSpace === (theSpaces.length -1)){
                     newData[playerIndex].currentSpace = 0;
-                    newData[playerIndex].amount += 200;
+                    newData[playerIndex].amount += generalOptions.passGoAmount;
                 } else {
                     newData[playerIndex].currentSpace += 1;
 
@@ -95,6 +84,23 @@ const GamePage = ({thePlayers, setThePlayers}) => {
 
             setGameState("AfterRoll");
             
+        } else if(gameState === "AfterRoll") {
+
+            if(currentPlayerTurn === thePlayers.length) {
+                if(turnNumber >= generalOptions.turnNumber){
+                    navigate("/results");
+                    setGameState("End")
+                } else {
+                    let tempNum = turnNumber;
+                    setTurnNumber(tempNum + 1);
+                    setCurrentPlayerTurn(1);
+                    setGameState("RollDie");
+                }
+            } else {
+                let tempNum = currentPlayerTurn;
+                setCurrentPlayerTurn(tempNum+1);
+                setGameState("RollDie");
+            }
         }
     }
 
@@ -104,7 +110,6 @@ const GamePage = ({thePlayers, setThePlayers}) => {
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
             <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} dieRoll={dieRoll} buttonChange={gameEventHandle} />
             <PlayerStatsBoard thePlayers={thePlayers} />
-            <button onClick={testForChange}>Test</button>
         </main>
     )
 }
