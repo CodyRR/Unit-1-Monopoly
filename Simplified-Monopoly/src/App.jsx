@@ -27,10 +27,10 @@ function App() {
   const [thePlayers, setThePlayers] = useState(playerArray);
   const [defaultPlayers, setDefaultPlayers] = useState(defaultArray)
 
-  useEffect(()=> {
+  // useEffect(()=> {
   
-    console.log(thePlayers);
-  }, [thePlayers]);
+  //   console.log(thePlayers);
+  // }, [thePlayers]);
 
   return (
     <div id='body-container'>
