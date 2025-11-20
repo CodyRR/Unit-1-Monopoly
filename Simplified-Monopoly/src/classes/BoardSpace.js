@@ -5,6 +5,7 @@ export default class Space {
         this.name = name;
         this.spaceNum = spaceNum;
         this.owner = "Sale";
+        this.color = "gray";
         this.spaceIsBought = false;
         this.spaceValueStart = spaceValueStart;
         this.spaceValueBought = spaceValueBought;

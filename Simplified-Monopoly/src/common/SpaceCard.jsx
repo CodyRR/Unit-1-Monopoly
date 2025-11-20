@@ -4,7 +4,7 @@ const SpaceCard = ({currentSpace, thePlayers}) => {
     return (
         
         <div className="card">
-            <div className="owner-color"></div>
+            <div className="owner-color" style={{ backgroundColor: currentSpace.color}}></div>
             <div className="card-field">
                 {thePlayers.map((player) => {
                     if(player.currentSpace === currentSpace.spaceNum) {

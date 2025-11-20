@@ -12,13 +12,12 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
     })
 
-    console.log(spaceArrayData);
-
     const [theSpaces, setTheSpaces] = useState(spaceArrayData);
     const [widthSize, setWidthSize] = useState(null);
     const [turnNumber, setTurnNumber] = useState(1);
     const [currentPlayerTurn, setCurrentPlayerTurn] = useState(thePlayers[0].playerId);
     const [gameState, setGameState] = useState("Start");
+    const [dieRoll, setDieRoll] = useState(0)
 
     
 
@@ -65,29 +64,37 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         return Math.floor(Math.random() *6) +1;
     }
 
-    const gameEventHandle = (event) => {
+    function sleep(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
+    const gameEventHandle = (event) =>  {
         event.preventDefault();
         if(gameState === "Start"){
             setGameState("RollDie")
         } else if (gameState === "RollDie"){
 
             let movement = rollTheDie();
+            setDieRoll(movement);
             console.log("Role die " + movement);
             
-            let newData2 = [...thePlayers];
+            let newData = [...thePlayers];
             let playerIndex = currentPlayerTurn -1;
 
             for( let i = 0; i < movement; i++){
                 console.log(i)
-                if(newData2[playerIndex].currentSpace === (theSpaces.length -1)){
-                    newData2[playerIndex].currentSpace = 0;
+                if(newData[playerIndex].currentSpace === (theSpaces.length -1)){
+                    newData[playerIndex].currentSpace = 0;
+                    newData[playerIndex].amount += 200;
                 } else {
-                    newData2[playerIndex].currentSpace += 1;
+                    newData[playerIndex].currentSpace += 1;
 
                 }
-                
+                setThePlayers(newData);
             }
-            setThePlayers(newData2);
+
+            setGameState("AfterRoll");
+            
         }
     }
 
@@ -95,7 +102,7 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         <main>
             <p>THE GAMES PAGE</p>
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
-            <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} buttonChange={gameEventHandle} />
+            <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} dieRoll={dieRoll} buttonChange={gameEventHandle} />
             <PlayerStatsBoard thePlayers={thePlayers} />
             <button onClick={testForChange}>Test</button>
         </main>
