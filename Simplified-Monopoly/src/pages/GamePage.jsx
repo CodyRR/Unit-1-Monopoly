@@ -6,7 +6,7 @@ import StatusBoard from "../layout/StatusBoard";
 import PlayerStatsBoard from "../layout/PlayerStatsBoard";
 import Space from "../classes/BoardSpace"
 
-const GamePage = ({thePlayers, setThePlayers}) => {
+const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
 
     const navigate = useNavigate();
     const spaceArrayData = [];
@@ -51,17 +51,6 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         return () => window.removeEventListener('resize', checkSize);
     }, []);
 
-    const testForChange = (event) => {
-
-        event.preventDefault();
-        let newData = [...theSpaces];
-        newData[2].spaceIsBought = true;
-        let newData2 = [...thePlayers];
-        newData2[2].currentSpace = 4;
-        setTheSpaces(newData);
-        setThePlayers(newData2);
-    }
-
     const rollTheDie = () => {
         return Math.floor(Math.random() *6) +1;
     }
@@ -83,10 +72,9 @@ const GamePage = ({thePlayers, setThePlayers}) => {
             let playerIndex = currentPlayerTurn -1;
 
             for( let i = 0; i < movement; i++){
-                console.log(i)
                 if(newData[playerIndex].currentSpace === (theSpaces.length -1)){
                     newData[playerIndex].currentSpace = 0;
-                    newData[playerIndex].amount += 200;
+                    newData[playerIndex].amount += generalOptions.passGoAmount;
                 } else {
                     newData[playerIndex].currentSpace += 1;
 
@@ -99,7 +87,7 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         } else if(gameState === "AfterRoll") {
 
             if(currentPlayerTurn === thePlayers.length) {
-                if(turnNumber < 10){
+                if(turnNumber >= generalOptions.turnNumber){
                     navigate("/results");
                     setGameState("End")
                 } else {
@@ -122,7 +110,6 @@ const GamePage = ({thePlayers, setThePlayers}) => {
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
             <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} dieRoll={dieRoll} buttonChange={gameEventHandle} />
             <PlayerStatsBoard thePlayers={thePlayers} />
-            <button onClick={testForChange}>Test</button>
         </main>
     )
 }

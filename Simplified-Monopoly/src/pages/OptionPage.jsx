@@ -3,9 +3,10 @@ import { Link } from "react-router";
 import Button from "../common/Button";
 import PlayerColorOption from "../common/PlayerColorOption";
 
-const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers}) => {
+const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions, setGeneralOptions, defaultOption}) => {
 
     const [playerData, setPlayerData] = useState(structuredClone(thePlayers));
+    const [optionData, setOptionData] = useState(structuredClone(generalOptions));
 
     const handleDataChange = (playerNum, index, event) => {
         let newData = [...playerData];
@@ -13,10 +14,24 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers}) => {
         setPlayerData(newData);
     }
 
+    const handleGeneralChange = (name, event) => {
+        let newData = {...optionData};
+        newData[name] = Number(event.target.value);
+        setOptionData(newData);
+    }
+
+    const handleRadioChange = (event) => {
+
+        let newData = {...optionData};
+        newData["diceStyle"] = Number(event.target.value);
+        setOptionData(newData);
+    }
+
     const saveData = (event) => {
 
         event.preventDefault();
-        setThePlayers(playerData)
+        setThePlayers(playerData);
+        setGeneralOptions(optionData);
     }
 
     const restoreDefaults = (event) => {
@@ -25,6 +40,8 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers}) => {
         
         setPlayerData(structuredClone([...defaultPlayers]));
         setThePlayers(structuredClone([...defaultPlayers]));
+        setOptionData(structuredClone({...defaultOption}));
+        setGeneralOptions(structuredClone({...defaultOption}));
     }
 
     return (
@@ -92,29 +109,29 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers}) => {
             
                 <div></div>
                 <label>Turn Amount:</label>
-                    <input type="text" name="turnAmount" defaultValue={10}/>
+                <input type="number" name="turnAmount" step="1" value={optionData.turnNumber} onChange={(event) => handleGeneralChange("turnNumber", event)}/>
                 
                 <div></div>
                 <label>Dice Number:</label>
                 <div className="radio-container">
                     <div>
-                        <input type="radio" id="diceNum1" name="dice" value={1} defaultChecked/>
-                        <label for="diceNum1">1 Die</label>
+                        <input type="radio" id="diceNum1" name="dice" value={1} checked={optionData["diceStyle"] === 1} onChange={handleRadioChange} />
+                        <label htmlFor="diceNum1">1 Die</label>
                     </div>
                     <div>
-                        <input type="radio" id="diceNum2" name="dice" value={2}/>
-                        <label for="diceNum2">2 Die</label>
+                        <input type="radio" id="diceNum2" name="dice" value={2} checked={optionData["diceStyle"] === 2} onChange={handleRadioChange} />
+                        <label htmlFor="diceNum2">2 Die</label>
                     </div>
                     <div>
                     
-                        <input type="radio" id="diceNum3" name="dice" value={3}/>
-                        <label for="diceNum3">Low Die</label>
+                        <input type="radio" id="diceNum3" name="dice" value={3} checked={optionData["diceStyle"] === 3} onChange={handleRadioChange} />
+                        <label htmlFor="diceNum3">Low Die</label>
                     </div>
                 </div>
 
                 <div></div>
                 <label>Amount from Go: $</label> 
-                <input type="number" name="passGoAmount" step="1" defaultValue={200} />
+                <input type="number" name="passGoAmount" step="1" value={optionData.passGoAmount} onChange={(event) => handleGeneralChange("passGoAmount", event)} />
                     
                 <Button id="save-button" handleClick={saveData} display={"Save"}/>
                 <Button id="restore-button" handleClick={restoreDefaults} display={"Restore Defaults"}/>

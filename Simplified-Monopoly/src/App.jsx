@@ -17,6 +17,17 @@ function App() {
 
   const playerArray = [];
   const defaultArray = [];
+  const defaultGameOption = {
+    turnNumber: 10,
+    diceStyle: 1,
+    passGoAmount: 200
+  }
+
+  let gameOptions = {
+    turnNumber: 10,
+    diceStyle: 1,
+    passGoAmount: 200
+  }
 
   defaultPlayerData.forEach(function(playerData) {
 
@@ -25,7 +36,9 @@ function App() {
   });
 
   const [thePlayers, setThePlayers] = useState(playerArray);
-  const [defaultPlayers, setDefaultPlayers] = useState(defaultArray)
+  const [defaultPlayers, setDefaultPlayers] = useState(defaultArray);
+  const [generalOptions, setGeneralOptions] = useState(gameOptions);
+  const [defaultOption, setDefaultOption] = useState(defaultGameOption);
 
   // useEffect(()=> {
   
@@ -38,8 +51,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/rules' element={<RulesPage />} />
-        <Route path='/options' element={<OptionsPage thePlayers={thePlayers} setThePlayers={setThePlayers} defaultPlayers={defaultPlayers}/>} />
-        <Route path='/game' element={<GamePage thePlayers={thePlayers} setThePlayers={setThePlayers} />} />
+        <Route path='/options' element={<OptionsPage thePlayers={thePlayers} setThePlayers={setThePlayers} defaultPlayers={defaultPlayers} generalOptions={generalOptions} setGeneralOptions={setGeneralOptions} defaultOption={defaultOption} />} />
+        <Route path='/game' element={<GamePage thePlayers={thePlayers} setThePlayers={setThePlayers} generalOptions={generalOptions}/>} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/results' element={<ResultsPage thePlayers={thePlayers} />} />
         <Route path='*' element={<Navigate to='/' />} />'
