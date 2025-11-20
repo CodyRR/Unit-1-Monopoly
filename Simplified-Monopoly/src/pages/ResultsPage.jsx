@@ -1,5 +1,5 @@
 
-const ResultsPage = () => {
+const ResultsPage = ({thePlayers}) => {
 
     return (
         <main>

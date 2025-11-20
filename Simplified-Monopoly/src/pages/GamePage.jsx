@@ -16,6 +16,9 @@ const GamePage = ({thePlayers, setThePlayers}) => {
 
     const [theSpaces, setTheSpaces] = useState(spaceArrayData);
     const [widthSize, setWidthSize] = useState(null);
+    const [turnNumber, setTurnNumber] = useState(1);
+    const [currentPlayerTurn, setCurrentPlayerTurn] = useState(thePlayers[0].playerId);
+    const [gameState, setGameState] = useState("Start");
 
     
 
@@ -56,14 +59,43 @@ const GamePage = ({thePlayers, setThePlayers}) => {
         newData2[2].currentSpace = 4;
         setTheSpaces(newData);
         setThePlayers(newData2);
-        console.log(newData2)
+    }
+
+    const rollTheDie = () => {
+        return Math.floor(Math.random() *6) +1;
+    }
+
+    const gameEventHandle = (event) => {
+        event.preventDefault();
+        if(gameState === "Start"){
+            setGameState("RollDie")
+        } else if (gameState === "RollDie"){
+
+            let movement = rollTheDie();
+            console.log("Role die " + movement);
+            
+            let newData2 = [...thePlayers];
+            let playerIndex = currentPlayerTurn -1;
+
+            for( let i = 0; i < movement; i++){
+                console.log(i)
+                if(newData2[playerIndex].currentSpace === (theSpaces.length -1)){
+                    newData2[playerIndex].currentSpace = 0;
+                } else {
+                    newData2[playerIndex].currentSpace += 1;
+
+                }
+                
+            }
+            setThePlayers(newData2);
+        }
     }
 
     return (
         <main>
             <p>THE GAMES PAGE</p>
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
-            <StatusBoard />
+            <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} buttonChange={gameEventHandle} />
             <PlayerStatsBoard thePlayers={thePlayers} />
             <button onClick={testForChange}>Test</button>
         </main>
