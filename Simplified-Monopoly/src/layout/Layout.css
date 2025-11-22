@@ -94,3 +94,8 @@ td {
     height: 20px;
     margin-left: 5px;
 }
+
+.result-row-1,
+.result-row-2 {
+    display: flex;
+}

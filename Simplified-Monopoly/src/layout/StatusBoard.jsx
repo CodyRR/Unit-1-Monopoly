@@ -1,3 +1,4 @@
+import ImageHandler from "../classes/ImageHandler";
 import Button from "../common/Button";
 import { useState, useEffect } from "react";
 
@@ -34,6 +35,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
                     </div>
                     <div>
                         {thePlayers[currentPlayerTurn -1].name} 
+                        <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(thePlayers[currentPlayerTurn-1].color)})`}} ></div>
                     </div>
                 </div>
                 <div>

@@ -1,12 +1,6 @@
+import ImageHandler from "../classes/ImageHandler"
 
 const SpaceCard = ({currentSpace, thePlayers}) => {
-
-    const urlImages = "src/assets/"
-
-    const getPieceImage = (color) => {
-
-        return (urlImages + color + "-piece.png");
-    }
 
     return (
         
@@ -15,7 +9,7 @@ const SpaceCard = ({currentSpace, thePlayers}) => {
             <div className="card-field">
                 {thePlayers.map((player) => {
                     if(player.currentSpace === currentSpace.spaceNum) {
-                        return <div className="player-display" style={{ backgroundImage: `url(${getPieceImage(player.color)})`}} ></div>
+                        return <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(player.color)})`}} ></div>
                     }
                 })}
             </div>
