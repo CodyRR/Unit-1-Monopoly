@@ -1,6 +1,13 @@
 
 const SpaceCard = ({currentSpace, thePlayers}) => {
 
+    const urlImages = "src/assets/"
+
+    const getPieceImage = (color) => {
+
+        return (urlImages + color + "-piece.png");
+    }
+
     return (
         
         <div className="card">
@@ -8,7 +15,7 @@ const SpaceCard = ({currentSpace, thePlayers}) => {
             <div className="card-field">
                 {thePlayers.map((player) => {
                     if(player.currentSpace === currentSpace.spaceNum) {
-                        return <div className="player-display" style={{ backgroundColor: player.color}} >{player.playerId}</div>
+                        return <div className="player-display" style={{ backgroundImage: `url(${getPieceImage(player.color)})`}} ></div>
                     }
                 })}
             </div>
