@@ -8,4 +8,5 @@ export default class Players {
         this.amount = amount;
         this.currentSpace = 0;
     }
+
 }
