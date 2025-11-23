@@ -26,12 +26,12 @@ const ResultsPage = ({thePlayers}) => {
                         <div>
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                         </div>
@@ -45,17 +45,17 @@ const ResultsPage = ({thePlayers}) => {
                         <div>
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                             <div className="result-row-2">
                                 <h5>{third}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
                             </div>
                         </div>
                     )
@@ -72,16 +72,16 @@ const ResultsPage = ({thePlayers}) => {
                         <div>
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[1][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[1][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{third}</h5>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                         </div>
@@ -95,19 +95,19 @@ const ResultsPage = ({thePlayers}) => {
                         <div>
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[0][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[1][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[1][1])})`}} ></div>
                             </div>
-                            <div className="result-row-1">
-                                <h4>{third}</h4>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[2][1])})`}} ></div>
+                            <div className="result-row-2">
+                                <h5>{third}</h5>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[2][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{fourth}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
                             </div>
                         </div>
                     )
@@ -123,7 +123,7 @@ const ResultsPage = ({thePlayers}) => {
                         <div className="result-row-1">
                             <h4>{winner}</h4>
                             {resultsData.map((data) => 
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                             )}
                         </div>
                     )
@@ -137,12 +137,12 @@ const ResultsPage = ({thePlayers}) => {
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
                             </div>
                         </div>
                     )
@@ -160,13 +160,13 @@ const ResultsPage = ({thePlayers}) => {
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
                                 {partialData2.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                         </div>
@@ -180,16 +180,16 @@ const ResultsPage = ({thePlayers}) => {
                             <div className="result-row-1">
                                 <h4>{winner}</h4>
                                 {partialData.map((data) => 
-                                    <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
+                                    <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(data[1])})`}} ></div>
                                 )}
                             </div>
                             <div className="result-row-2">
                                 <h5>{second}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[2][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[2][1])})`}} ></div>
                             </div>
                             <div className="result-row-2">
                                 <h5>{third}</h5>
-                                <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
+                                <div className="player-display-results" style={{ backgroundImage: `url(${ImageHandler(resultsData[3][1])})`}} ></div>
                             </div>
                         </div>
                     )
@@ -202,8 +202,10 @@ const ResultsPage = ({thePlayers}) => {
 
     return (
         <main>
-            <h3>AND THE WINNER IS...</h3>
-            {displayResults()}
+            <div className="results-board">
+                <h3>AND THE WINNER IS...</h3>
+                {displayResults()}
+            </div>
             <button>Home</button>
         </main>
     )

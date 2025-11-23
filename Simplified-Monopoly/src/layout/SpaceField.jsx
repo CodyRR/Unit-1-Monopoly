@@ -13,8 +13,8 @@ const SpaceField = ({theSpaces, widthSize, thePlayers}) => {
 
         return (
             <>
-                <SpaceCard currentSpace={space} thePlayers={thePlayers}/>
-                {lastItem && <div className="row-border"></div>}
+                <SpaceCard key={space.name} currentSpace={space} thePlayers={thePlayers}/>
+                {lastItem && <div key={"rowBoard-" + index} className="row-border"></div>}
             </>
         )
 
