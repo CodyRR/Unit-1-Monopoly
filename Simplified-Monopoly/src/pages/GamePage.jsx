@@ -100,6 +100,13 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
 
             if(currentPlayerTurn === thePlayers.length) {
                 if(turnNumber >= generalOptions.turnNumber){
+                    
+                    while(spaceArrayData >0){
+                        spaceArrayData.pop;
+                    }
+                    spaceData.forEach(function(space) {
+                        spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
+                    })
                     navigate("/results");
                     setGameState("End")
                 } else {

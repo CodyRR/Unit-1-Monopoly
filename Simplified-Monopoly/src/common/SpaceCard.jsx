@@ -4,7 +4,7 @@ const SpaceCard = ({currentSpace, thePlayers}) => {
 
     return (
         
-        <div className="card">
+        <div className="card" style={{'--hover-color': currentSpace.color}}>
             <div className="owner-color" style={{ backgroundColor: currentSpace.color}}></div>
             <div className="card-field">
                 {thePlayers.map((player) => {

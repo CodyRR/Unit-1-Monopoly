@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import HomePage from './pages/HomePage'
 import RulesPage from './pages/RulesPage'
 import OptionsPage from './pages/OptionPage'
@@ -40,11 +40,6 @@ function App() {
   const [generalOptions, setGeneralOptions] = useState(gameOptions);
   const [defaultOption, setDefaultOption] = useState(defaultGameOption);
 
-  // useEffect(()=> {
-  
-  //   console.log(thePlayers);
-  // }, [thePlayers]);
-
   return (
     <div id='body-container'>
       <Header />
@@ -54,7 +49,7 @@ function App() {
         <Route path='/options' element={<OptionsPage thePlayers={thePlayers} setThePlayers={setThePlayers} defaultPlayers={defaultPlayers} generalOptions={generalOptions} setGeneralOptions={setGeneralOptions} defaultOption={defaultOption} />} />
         <Route path='/game' element={<GamePage thePlayers={thePlayers} setThePlayers={setThePlayers} generalOptions={generalOptions}/>} />
         <Route path='/about' element={<AboutPage />} />
-        <Route path='/results' element={<ResultsPage thePlayers={thePlayers} />} />
+        <Route path='/results' element={<ResultsPage thePlayers={thePlayers} setThePlayers={setThePlayers} defaultPlayers={defaultPlayers} setGeneralOptions={setGeneralOptions} defaultOption={defaultOption}/>} />
         <Route path='*' element={<Navigate to='/' />} />'
       </Routes>
       <Footer />

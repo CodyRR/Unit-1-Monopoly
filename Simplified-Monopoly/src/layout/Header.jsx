@@ -4,14 +4,13 @@ import { useLocation } from "react-router";
 const Header = () => {
 
     const location = useLocation();
-    const { pathname } = location;
-    const hideNavRoutes = '/game';
+    const hideNavRoutes = ['/game', '/results'];
 
     return (
         <header>
             <div id="header-container">
                 <h1>Simplified Monopoly</h1>
-                {!(hideNavRoutes === pathname) && <NavMenu />}
+                {!(hideNavRoutes.includes(location.pathname)) && <NavMenu />}
                 
             </div>
         </header>
