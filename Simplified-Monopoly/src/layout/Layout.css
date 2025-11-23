@@ -191,3 +191,15 @@ td {
 .result-row-2 {
     font-size: 30px;
 }
+
+#back-home-button {
+    align-items: center;
+    justify-self: center;
+    display: flex;
+    height: 40px;
+    font-size: 30px;
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+    margin: 10px;;
+}

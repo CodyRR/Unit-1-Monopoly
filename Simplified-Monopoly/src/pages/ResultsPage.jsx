@@ -1,7 +1,10 @@
 import ImageHandler from "../classes/ImageHandler";
+import Button from "../common/Button";
+import { useNavigate } from "react-router";
 
-const ResultsPage = ({thePlayers}) => {
+const ResultsPage = ({thePlayers, setThePlayers, defaultPlayers, setGeneralOptions, defaultOption}) => {
 
+    const navigate = useNavigate();
     const resultsData = thePlayers.map( player => [player.name, player.color, player.amount]);
     resultsData.sort((a, b) => b[2] - a[2]);
     
@@ -200,13 +203,21 @@ const ResultsPage = ({thePlayers}) => {
 
     }
 
+    const goBackHome = (event) => {
+        event.preventDefault();
+
+        setThePlayers(structuredClone([...defaultPlayers]));
+        setGeneralOptions(structuredClone({...defaultOption}));
+        navigate("/");
+    }
+
     return (
         <main>
             <div className="results-board">
                 <h3>AND THE WINNER IS...</h3>
                 {displayResults()}
             </div>
-            <button>Home</button>
+            <Button id="back-home-button" handleClick={goBackHome} display={"Go to Home Page"}/>
         </main>
     )
 }
