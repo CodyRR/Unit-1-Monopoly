@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router";
 import Button from "../common/Button";
 import PlayerColorOption from "../common/PlayerColorOption";
 
@@ -102,7 +101,6 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
 
     return (
         <main>
-            <p>THE OPTIONS PAGE</p>
             <form className="grid-form-container">
                 <label>Player 1</label>
 
@@ -190,7 +188,7 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
                 <input type="number" name="passGoAmount" step="1" value={optionData.passGoAmount} onChange={(event) => handleGeneralChange("passGoAmount", event)} />
                     
                 <Button id="save-button" handleClick={saveData} validator={validOutput} display={"Save"}/>
-                <Button id="play-options-button" handleClick={goToGame} display="Play"/>
+                <Button id="play-options-button" handleClick={goToGame} validator={validOutput} display="Play"/>
                 <Button id="restore-button" handleClick={restoreDefaults} display={"Restore Defaults"}/>
             </form>
             {!validOutput && <p className="error-menu" >The names or colors need to be different or the amounts or turns must be positive</p>}

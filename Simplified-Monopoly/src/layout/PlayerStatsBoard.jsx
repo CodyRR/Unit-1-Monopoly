@@ -4,22 +4,12 @@ const PlayerStatsBoard = ({thePlayers}) => {
 
     return(
         <div className="player-stats-board">
-            <div className="player-stat">
-                <p>{thePlayers[0].name}: ${thePlayers[0].amount}</p>
-                <div className="player-icon" style={{ backgroundImage: `url(${ImageHandler(thePlayers[0].color)})`}}></div>
+            {thePlayers.map((player) => (
+                <div className="player-stat">
+                <p>{player.name}: ${player.amount}</p>
+                <img className="player-icon" src={ ImageHandler(player.color)} alt={player.color +  " piece"}/>
             </div>
-            <div className="player-stat">
-                <p>{thePlayers[1].name}: ${thePlayers[1].amount}</p>
-                <div className="player-icon" style={{ backgroundImage: `url(${ImageHandler(thePlayers[1].color)})`}}></div>
-            </div>
-            <div className="player-stat">
-                <p>{thePlayers[2].name}: ${thePlayers[2].amount}</p>
-                <div className="player-icon" style={{ backgroundImage: `url(${ImageHandler(thePlayers[2].color)})`}}></div>
-            </div>
-            <div className="player-stat">
-                <p>{thePlayers[3].name}: ${thePlayers[3].amount}</p>
-                <div className="player-icon" style={{ backgroundImage: `url(${ImageHandler(thePlayers[3].color)})`}}></div>
-            </div>
+            ))}
         </div>
     )
 }

@@ -19,7 +19,8 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
     const [turnNumber, setTurnNumber] = useState(1);
     const [currentPlayerTurn, setCurrentPlayerTurn] = useState(1);
     const [gameState, setGameState] = useState("Start");
-    const [dieRoll, setDieRoll] = useState(0)
+    const [dieRoll, setDieRoll] = useState(0);
+    const [dieRoll2, setDieRoll2] = useState(0);
 
     
 
@@ -51,12 +52,8 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
         return () => window.removeEventListener('resize', checkSize);
     }, []);
 
-    const rollTheDie = () => {
-        return Math.floor(Math.random() *6) +1;
-    }
-
-    function sleep(delay) {
-        return new Promise( res => setTimeout(res, delay) );
+    const rollTheDie = (max) => {
+        return Math.floor(Math.random() *max) +1;
     }
 
     const gameEventHandle = (event) =>  {
@@ -65,13 +62,28 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
             setGameState("RollDie")
         } else if (gameState === "RollDie"){
 
-            let movement = rollTheDie();
+            let movement = 0;
+            if(generalOptions.diceStyle ===3 ){
+                movement = rollTheDie(3);
+            } else{
+                movement = rollTheDie(6);
+            }
+            
             setDieRoll(movement);
+
+            let movement2 = 0;
+
+            if(generalOptions.diceStyle === 2){
+                movement2 = rollTheDie(6)
+                setDieRoll2(movement2);
+            } else {
+                setDieRoll2(0);
+            }
             
             let newData = [...thePlayers];
             let playerIndex = currentPlayerTurn -1;
 
-            for( let i = 0; i < movement; i++){
+            for( let i = 0; i < (movement + movement2); i++){
                 if(newData[playerIndex].currentSpace === (theSpaces.length -1)){
                     newData[playerIndex].currentSpace = 0;
                     newData[playerIndex].amount += generalOptions.passGoAmount;
@@ -106,9 +118,8 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
 
     return (
         <main>
-            <p>THE GAMES PAGE</p>
             <SpaceField theSpaces={theSpaces} widthSize={widthSize} thePlayers={thePlayers}/>
-            <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} dieRoll={dieRoll} buttonChange={gameEventHandle} />
+            <StatusBoard thePlayers={thePlayers} setThePlayers={setThePlayers} theSpaces={theSpaces} setTheSpaces={setTheSpaces} turnNumber={turnNumber} currentPlayerTurn={currentPlayerTurn} gameState={gameState} dieRoll={dieRoll} dieRoll2={dieRoll2} buttonChange={gameEventHandle} />
             <PlayerStatsBoard thePlayers={thePlayers} />
         </main>
     )

@@ -1,8 +1,9 @@
 import ImageHandler from "../classes/ImageHandler";
+import ImageHandlerDie from "../classes/ImageHandlerDie";
 import Button from "../common/Button";
 import { useState, useEffect } from "react";
 
-const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNumber, currentPlayerTurn, gameState, dieRoll, buttonChange}) => {
+const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNumber, currentPlayerTurn, gameState, dieRoll, dieRoll2, buttonChange}) => {
     
     const [ buySpaceOption, setBuySpaceOption] = useState(true);
     const [ playerBought, setPlayerBought] = useState(false);
@@ -35,7 +36,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
                     </div>
                     <div>
                         {thePlayers[currentPlayerTurn -1].name} 
-                        <div className="player-display-status" style={{ backgroundImage: `url(${ImageHandler(thePlayers[currentPlayerTurn-1].color)})`}} ></div>
+                        <img className="player-display-status" src={ ImageHandler(thePlayers[currentPlayerTurn-1].color)} alt={thePlayers[currentPlayerTurn-1] +  " piece"}/>
                     </div>
                 </div>
                 <div>
@@ -58,7 +59,8 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
                         {thePlayers[currentPlayerTurn -1].name} rolled a
                     </div>
                     <div>
-                        {dieRoll}
+                        <img className="die-display" src={ ImageHandlerDie(dieRoll)} alt={"Roll a " + dieRoll}/>
+                        {dieRoll2 != 0 && <img className="die-display" src={ ImageHandlerDie(dieRoll2)} alt={"Roll a " + dieRoll2}/>}                    
                     </div>
                 </div>
                 <div>
