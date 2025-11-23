@@ -9,7 +9,8 @@ const SpaceCard = ({currentSpace, thePlayers}) => {
             <div className="card-field">
                 {thePlayers.map((player) => {
                     if(player.currentSpace === currentSpace.spaceNum) {
-                        return <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(player.color)})`}} ></div>
+                        return <img key={"player-" + player.playerId} className="player-display" src={ ImageHandler(player.color)} />
+                        // return <div className="player-display" style={{ backgroundImage: `url(${ImageHandler(player.color)})`}} ></div>
                     }
                 })}
             </div>

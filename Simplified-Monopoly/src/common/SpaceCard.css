@@ -207,15 +207,14 @@
 }
 
 .player-display {
-    background-size: cover;
-    width: 10px;
-    height: 10px;
-    padding: 10px;
-    margin: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 10px 10px 20px 0 rgb(233, 249, 2);
 }
 
 .container {
