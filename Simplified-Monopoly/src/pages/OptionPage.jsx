@@ -14,18 +14,26 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
 
     useEffect(()=>{
 
-        let playerNames = [playerData[0].name, playerData[1].name, playerData[2].name, playerData[3].name];
-        let playerColors = [playerData[0].color, playerData[1].color, playerData[2].color, playerData[3].color];
+        let playerNames = [];
+        let playerColors = [];
+        let optionNumber = [];
+        for(let i = 0; i < playerData.length; i++){
+            playerNames.push(playerData[i].name);
+            playerColors.push(playerData[i].color);
+            optionNumber.push(playerData[i].amount);
+        }
+        optionNumber.push(optionData.turnNumber);
         let validName = checkForDuplicates(playerNames);
         let validColor = checkForDuplicates(playerColors);
+        let validNumber = checkForNegatives(optionNumber)
 
-        if(validName && validColor){
+        if(validName && validColor && validNumber){
             setValidOutput(true);
         } else {
             setValidOutput(false);
         }
 
-    }, [playerData])
+    }, [playerData, optionData])
 
     const checkForDuplicates = (data) => {
 
@@ -36,6 +44,16 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
 
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+    
+    const checkForNegatives = (data) => {
+
+        for(let i = 0; i < data.length; i++){
+            if(data[i] <= 0){
+                return false;
             }
         }
         return true;
@@ -175,6 +193,7 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
                 <Button id="play-options-button" handleClick={goToGame} display="Play"/>
                 <Button id="restore-button" handleClick={restoreDefaults} display={"Restore Defaults"}/>
             </form>
+            {!validOutput && <p className="error-menu" >The names or colors need to be different or the amounts or turns must be positive</p>}
         </main>
     )
 }

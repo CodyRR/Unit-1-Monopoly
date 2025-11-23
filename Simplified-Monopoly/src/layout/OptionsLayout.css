@@ -5,6 +5,7 @@
     justify-content: center;
     font-size: 40px;
     row-gap: 20px;
+    padding-bottom: 20px;
 }
 
 input,
@@ -41,4 +42,10 @@ input[type="radio"] {
 
 #play-options-button {
     align-self: center;
+}
+
+.error-menu {
+    font-size: 20px;
+    justify-self: center;
+    color: red;
 }
