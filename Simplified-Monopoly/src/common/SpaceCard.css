@@ -33,7 +33,7 @@
     
 .row-border{
     border: solid;
-    background-image: linear-gradient(to right, green 0% 100%);
+    background-image: linear-gradient(to right, red 0% 100%);
     
     height: var(--green-height);
 }
@@ -50,7 +50,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(rgb(105, 194, 246) 0 50%); 
+        background-image: linear-gradient(red 0% 100%); 
         position: absolute;
         z-index: -1;
         top: 100%;
@@ -64,7 +64,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(purple 0 100%);
+        background-image: linear-gradient(red 0% 100%);
         position: absolute;
         z-index: -1;
         bottom: 100%;
@@ -97,7 +97,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(blue 0 50%); 
+        background-image: linear-gradient(red 0% 100%); 
         position: absolute;
         z-index: -1;
         top: 100%;
@@ -111,7 +111,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(purple 0 100%);
+        background-image: linear-gradient(red 0% 100%);
         position: absolute;
         z-index: -1;
         bottom: 100%;
@@ -144,7 +144,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(blue 0 50%); 
+        background-image: linear-gradient(red 0% 100%); 
         position: absolute;
         z-index: -1;
         top: 100%;
@@ -158,7 +158,7 @@
         border: solid;
         height: calc((var(--y) + var(--green-height)));
         width: 2px;
-        background-image: linear-gradient(purple 0 100%);
+        background-image: linear-gradient(red 0% 100%);
         position: absolute;
         z-index: -1;
         bottom: 100%;
