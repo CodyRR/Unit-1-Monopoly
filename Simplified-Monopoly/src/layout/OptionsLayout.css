@@ -1,6 +1,6 @@
 .grid-form-container {
     display: grid;   
-    grid-template-columns: 150px 200px 250px;
+    grid-template-columns: 200px 200px 250px;
     margin: auto;
     justify-content: center;
     font-size: 40px;
@@ -17,7 +17,7 @@ select {
 input[type='text'],
 input[type='number'],
 select {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 input[type="radio"] {
@@ -28,4 +28,17 @@ input[type="radio"] {
 .radio-container {
     display: flex;
     flex-direction: column; /* Stacks items vertically */
+}
+
+#save-button,
+#play-options-button,
+#restore-button {
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    justify-self: center;
+}
+
+#play-options-button {
+    align-self: center;
 }

@@ -1,8 +1,8 @@
 
-const Button = ({ id, display, classes, handleClick}) => {
+const Button = ({ id, display, classes, handleClick, validator = true}) => {
 
     return (
-        <button id={id} className={classes} onClick={handleClick}>
+        <button id={id} className={classes} onClick={handleClick} disabled={!validator}>
             {display}
         </button>
     )
