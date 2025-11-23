@@ -8,7 +8,7 @@ const ResultsPage = ({thePlayers, setThePlayers, defaultPlayers, setGeneralOptio
     const resultsData = thePlayers.map( player => [player.name, player.color, player.amount]);
     resultsData.sort((a, b) => b[2] - a[2]);
     
-    const displayResults = () => {
+    const displayResults = () => { // This will display the winner.  Most of this is conditions for players that have the same amount.
 
         let winner = "";
         let second = "";
