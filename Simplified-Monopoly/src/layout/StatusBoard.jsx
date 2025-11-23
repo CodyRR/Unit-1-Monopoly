@@ -26,7 +26,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         }
     }
 
-    const pressToRoll = () => {
+    const pressToRoll = () => { // This is the setup for the player's turn and roll
 
         return (
             <>
@@ -50,7 +50,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         )
     }
 
-    const afterRoll = () => {
+    const afterRoll = () => { // This updates the board where the player lands
         
         return (
             <>
@@ -78,7 +78,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         )
     }
 
-    const checkOwner = () => {
+    const checkOwner = () => { // This checks the space for the owner
 
 
         if(theSpaces[thePlayers[currentPlayerTurn -1].currentSpace].name === "GO"){
@@ -137,7 +137,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         }
     }
 
-    const handlePayment = (spaceOwner) => {
+    const handlePayment = (spaceOwner) => { // The player must pay the owner the value.
         setBuySpaceOption(false);
         let newData = [...thePlayers];
 
@@ -146,7 +146,7 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         setThePlayers(newData)
     }
 
-    const buySpace = () => {
+    const buySpace = () => { // This happens if the player buys a space that is for sale.
 
         setBuySpaceOption(false);
         setPlayerBought(true);
@@ -162,8 +162,8 @@ const StatusBoard = ({thePlayers, setThePlayers, theSpaces, setTheSpaces, turnNu
         setTheSpaces(newData);
     }
 
-    const returnToGame = () => {
-        // setBuySpaceOption(false);
+    const returnToGame = () => { // This is the end of the player turn. Pressing the button will continue.
+
         return (
             <div>
                 <div>

@@ -24,7 +24,7 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
 
     
 
-    useEffect(() => {
+    useEffect(() => {  // This checks screen changes for the board. Use 5 spaces on large, 4 on medium, 3 on small
 
         const checkSize = () => {
             
@@ -56,7 +56,7 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
         return Math.floor(Math.random() *max) +1;
     }
 
-    const gameEventHandle = (event) =>  {
+    const gameEventHandle = (event) =>  { // This handles the game changes. When the Event handler triggers, the gameState determines what happens
         event.preventDefault();
         if(gameState === "Start"){
             setGameState("RollDie")
