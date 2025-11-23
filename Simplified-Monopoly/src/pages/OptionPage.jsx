@@ -1,12 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import Button from "../common/Button";
 import PlayerColorOption from "../common/PlayerColorOption";
 
 const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions, setGeneralOptions, defaultOption}) => {
 
+    const navigate = useNavigate();
+
     const [playerData, setPlayerData] = useState(structuredClone(thePlayers));
     const [optionData, setOptionData] = useState(structuredClone(generalOptions));
+    const [validOutput, setValidOutput] = useState(true);
+
+    useEffect(()=>{
+
+        let playerNames = [playerData[0].name, playerData[1].name, playerData[2].name, playerData[3].name];
+        let playerColors = [playerData[0].color, playerData[1].color, playerData[2].color, playerData[3].color];
+        let validName = checkForDuplicates(playerNames);
+        let validColor = checkForDuplicates(playerColors);
+
+        if(validName && validColor){
+            setValidOutput(true);
+        } else {
+            setValidOutput(false);
+        }
+
+    }, [playerData])
+
+    const checkForDuplicates = (data) => {
+
+        for(let i = 0; i < data.length; i++){
+
+            for(let j = i+1; j< data.length; j++){
+                if(data[i] === data[j]){
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     const handleDataChange = (playerNum, index, event) => {
         let newData = [...playerData];
@@ -32,6 +65,11 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
         event.preventDefault();
         setThePlayers(playerData);
         setGeneralOptions(optionData);
+    }
+
+    const goToGame = (event) => {
+        event.preventDefault()
+        navigate("/game")
     }
 
     const restoreDefaults = (event) => {
@@ -133,7 +171,8 @@ const OptionsPage = ({thePlayers, setThePlayers, defaultPlayers, generalOptions,
                 <label>Amount from Go: $</label> 
                 <input type="number" name="passGoAmount" step="1" value={optionData.passGoAmount} onChange={(event) => handleGeneralChange("passGoAmount", event)} />
                     
-                <Button id="save-button" handleClick={saveData} display={"Save"}/>
+                <Button id="save-button" handleClick={saveData} validator={validOutput} display={"Save"}/>
+                <Button id="play-options-button" handleClick={goToGame} display="Play"/>
                 <Button id="restore-button" handleClick={restoreDefaults} display={"Restore Defaults"}/>
             </form>
         </main>
