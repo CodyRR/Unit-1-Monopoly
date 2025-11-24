@@ -1,6 +1,6 @@
 
 export default class Space {
-    constructor(name, spaceNum, spaceValueStart, spaceValueBought, isStartSpace, nextSpaceNum){
+    constructor(name, spaceNum, spaceValueStart, spaceValueBought, isStartSpace){
 
         this.name = name;
         this.spaceNum = spaceNum;
@@ -13,7 +13,5 @@ export default class Space {
         if(isStartSpace){
             this.owner = "Start";
         }
-        this.nextSpaceNum = nextSpaceNum;
-        this.spaceIsOccupied = []
     }
 }

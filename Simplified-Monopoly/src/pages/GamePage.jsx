@@ -11,7 +11,7 @@ const GamePage = ({thePlayers, setThePlayers, generalOptions}) => {
     const navigate = useNavigate();
     const spaceArrayData = [];
     spaceData.forEach(function(space) {
-        spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4], space[5]));
+        spaceArrayData.push( new Space(space[0], space[1], space[2], space[3], space[4]));
     })
 
     const [theSpaces, setTheSpaces] = useState(spaceArrayData);
