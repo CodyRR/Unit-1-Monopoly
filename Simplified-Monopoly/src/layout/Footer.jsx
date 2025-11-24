@@ -6,7 +6,7 @@ const Footer = () => {
             <div id="footer-container">
                 <h3>Author: Cody Robinson</h3>
                 <div className="footer-grid">
-                    <a className="footer-link" href="codyrobinson28@gmail.com">codyrobinson28@gmail.com</a>
+                    <a className="footer-link">codyrobinson28@gmail.com</a>
                     <p>&copy; 2025</p>
                     <Link className='footer-link' to="/about">
                         About            
