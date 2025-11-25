@@ -2,6 +2,6 @@
 export default function ImageHandlerDie(number) {
 
     
-    const urlImages = "./src/assets/dice-";
-    return (urlImages + number + ".png?raw=true");
+    const urlImages = "./src/images/dice-";
+    return (urlImages + number + ".png");
 }
