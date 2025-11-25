@@ -2,6 +2,6 @@
 export default function ImageHandlerDie(number) {
 
     
-    const urlImages = "Simplified-Monopoly/src/assets/";
+    const urlImages = "./src/assets/dice-";
     return (urlImages + number + ".png");
 }
